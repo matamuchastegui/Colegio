@@ -16,6 +16,17 @@ var ComentarioSchema = new Schema({
 		required: 'Please fill Comentario name',
 		trim: true
 	},
+	asunto: {
+		type: String,
+		default: '',
+		required: 'Please fill Comentario asunto',
+		trim: true
+	},
+	contenido: {
+		type: String,
+		default: '',
+		trim: true
+	},
 	created: {
 		type: Date,
 		default: Date.now

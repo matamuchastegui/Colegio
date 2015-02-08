@@ -16,6 +16,9 @@ var MateriumSchema = new Schema({
 		required: 'Please fill Materium name',
 		trim: true
 	},
+	temas: {
+		type: Array
+	},
 	created: {
 		type: Date,
 		default: Date.now
