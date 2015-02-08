@@ -1,0 +1,19 @@
+<section data-ng-controller="ComentariosController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Comentarios</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="comentario in comentarios" data-ng-href="#!/comentarios/{{comentario._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="comentario.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="comentario.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="comentario.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!comentarios.$resolved || comentarios.length">
+    	No Comentarios yet, why don't you <a href="/#!/comentarios/create">create one</a>?
+    </div>
+</section>

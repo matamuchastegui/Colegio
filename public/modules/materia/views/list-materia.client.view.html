@@ -1,0 +1,19 @@
+<section data-ng-controller="MateriaController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Materia</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="materium in materia" data-ng-href="#!/materia/{{materium._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="materium.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="materium.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="materium.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!materia.$resolved || materia.length">
+    	No Materia yet, why don't you <a href="/#!/materia/create">create one</a>?
+    </div>
+</section>
