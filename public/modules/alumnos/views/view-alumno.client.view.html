@@ -1,6 +1,7 @@
 <section data-ng-controller="AlumnosController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="alumno.name"></h1>
+		<h1 data-ng-bind="alumno.name"> </h1>
+		<h1 data-ng-bind="alumno.apellido"></h1>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == alumno.user._id))">
 		<a class="btn btn-primary" href="/#!/alumnos/{{alumno._id}}/edit">
@@ -18,4 +19,8 @@
 			<span data-ng-bind="alumno.user.displayName"></span>
 		</em>
 	</small>
+	<p class="lead" data-ng-bind="alumno.dni"></p><br>
+	<p class="lead" data-ng-bind="alumno.direccion.calle"></p><br>
+	<p class="lead" data-ng-bind="alumno.direccion.numero"></p><br>
+	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p><br>
 </section>

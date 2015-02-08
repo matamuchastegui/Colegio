@@ -31,20 +31,20 @@ var AlumnoSchema = new Schema({
 	direccion: {
 		calle: {
 			type: String,
-			default: '',
-			required: 'Please fill Alumno calle',
+			default: 'calle1',
+			//required: 'Please fill Alumno calle',
 			trim: true
 		},
 		numero: {
 			type: String,
-			default: '',
-			required: 'Please fill Alumno numero',
+			default: 'num1',
+			//required: 'Please fill Alumno numero',
 			trim: true
 		},
 		dpto: {
 			type: String,
-			default: '',
-			required: 'Please fill Alumno dpto',
+			default: 'dpto1',
+			//required: 'Please fill Alumno dpto',
 			trim: true
 		}
 	},

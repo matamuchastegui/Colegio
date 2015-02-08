@@ -9,7 +9,13 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Alumno object
 			var alumno = new Alumnos ({
-				name: this.name
+				nombre: this.nombre,
+				apellido: this.apellido,
+				dni: this.dni,
+				direccion.calle: this.direccion.calle,
+				direccion.numero: this.direccion.numero,
+				direccion.dpto: this.direccion.dpto
+				
 			});
 
 			// Redirect after save
@@ -18,6 +24,8 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.nombre = '';
+				$scope.apellido = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
