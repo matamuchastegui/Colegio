@@ -9,7 +9,10 @@ angular.module('comentarios').controller('ComentariosController', ['$scope', '$s
 		$scope.create = function() {
 			// Create new Comentario object
 			var comentario = new Comentarios ({
-				name: this.name
+				name: this.name,
+				asunto: this.asunto,
+				contenido: this.contenido,
+				alumno: this.alumno
 			});
 
 			// Redirect after save

@@ -13,7 +13,7 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Postsed ons
+			Posted on
 			<span data-ng-bind="alumno.created | date:'mediumDate'"></span>
 			by
 			<span data-ng-bind="alumno.user.displayName"></span>
@@ -23,6 +23,42 @@
 	<p class="lead" data-ng-bind="alumno.direccion.calle"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.numero"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p>
+</section>
+
+<section data-ng-controller="ComentariosController">
+    <div class="page-header">
+        <h1>New Comentario</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Nombre" required>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label" for="asunto">Asunto</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="asunto" id="asunto" class="form-control" placeholder="Asunto" required>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label" for="contenido">Contenido</label>
+                    <div class="controls">
+                        <textarea data-ng-model="contenido" id="contenido" class="form-control" placeholder="Contenido..." required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
 </section>
 
 <section data-ng-controller="ComentariosController" data-ng-init="find()">

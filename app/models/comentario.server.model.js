@@ -22,6 +22,11 @@ var ComentarioSchema = new Schema({
 		required: 'Please fill Comentario asunto',
 		trim: true
 	},
+	alumno: {
+		type: Schema.ObjectId,
+		required: 'Error: no hay alumno',
+		ref: 'Alumno'
+	},
 	contenido: {
 		type: String,
 		default: '',

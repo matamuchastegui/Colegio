@@ -11,7 +11,8 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		};
 
 		var settings = {
-			total: 0,           // length of data
+			total: 0,  
+			counts: [5, 10, 20],         // length of data
 	        getData: function($defer, params) {
 	            // ajax request to api
 	            Alumnos.get(params.url(), function(response) {

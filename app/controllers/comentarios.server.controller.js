@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var comentario = new Comentario(req.body);
 	comentario.user = req.user;
+	comentario.user = req.alumno;
 
 	comentario.save(function(err) {
 		if (err) {
@@ -31,6 +32,7 @@ exports.create = function(req, res) {
  */
 exports.read = function(req, res) {
 	res.jsonp(req.comentario);
+	//res.jsonp(req.alumno);
 };
 
 /**

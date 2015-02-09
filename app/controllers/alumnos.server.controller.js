@@ -85,6 +85,7 @@ exports.list = function(req, res) {
 	});
 };*/
 exports.list = function(req, res) { 
+
 	var count = req.query.count || 5; // Si no hay registros devuelve 5
 	var page = req.query.page || 1;
 	var filter = {
@@ -96,11 +97,21 @@ exports.list = function(req, res) {
 		start: (page - 1) * count, // La primer pagina es la 0
 		count: count
 	};
+	
+	var sortObject = {};
+	if(req.query.sorting)
+	{
+		var sortKey = Object.keys(req.query.sorting)[0];
+		var sortValue = req.query.sorting[sortKey];
+		sortObject[sortValue] = sortKey;
+	}
+	else{
+		sortObject['desc'] = '_id';
+		//sortObject['desc'].push('_id');
+	}
 	var sort = {
-		sort: {
-			desc: '_id'
-		}
-	};
+		sort: sortObject
+	};	
 
 	Alumno
 		.find()
