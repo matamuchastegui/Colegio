@@ -1,9 +1,28 @@
 'use strict';
 
 // Alumnos controller
-angular.module('alumnos').controller('AlumnosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Alumnos',
-	function($scope, $stateParams, $location, Authentication, Alumnos) {
+angular.module('alumnos').controller('AlumnosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Alumnos', 'ngTableParams',
+	function($scope, $stateParams, $location, Authentication, Alumnos, ngTableParams) {
 		$scope.authentication = Authentication;
+
+		var params = {
+			page: 1,            // show first page
+        	count: 5
+		};
+
+		var settings = {
+			total: 0,           // length of data
+	        getData: function($defer, params) {
+	            // ajax request to api
+	            Alumnos.get(params.url(), function(response) {
+	                    // update table params
+	                    params.total(response.total);
+	                    // set new data
+	                    $defer.resolve(response.results);
+	            	});
+	    	}
+    	};
+		$scope.tableParams = new ngTableParams(params, settings);
 
 		// Create new Alumno
 		$scope.create = function() {
@@ -12,10 +31,11 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 				nombre: this.nombre,
 				apellido: this.apellido,
 				dni: this.dni,
-				direccion.calle: this.direccion.calle,
-				direccion.numero: this.direccion.numero,
-				direccion.dpto: this.direccion.dpto
-				
+				direccion: {
+					calle: this.calle, 
+					numero: this.numero, 
+					dpto: this.dpto
+				}
 			});
 
 			// Redirect after save
@@ -72,3 +92,7 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		};
 	}
 ]);
+
+/*angular.module('alumnos').controller('ComentariosController', function($scope){
+	$scope.message = 'This is a scope message';
+});*/

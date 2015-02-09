@@ -72,6 +72,7 @@ exports.delete = function(req, res) {
 /**
  * List of Alumnos
  */
+ /*
 exports.list = function(req, res) { 
 	Alumno.find().sort('-created').populate('user', 'displayName').exec(function(err, alumnos) {
 		if (err) {
@@ -82,6 +83,39 @@ exports.list = function(req, res) {
 			res.jsonp(alumnos);
 		}
 	});
+};*/
+exports.list = function(req, res) { 
+	var count = req.query.count || 5; // Si no hay registros devuelve 5
+	var page = req.query.page || 1;
+	var filter = {
+		filters: {
+			mandatory: req.query.filter
+		}
+	};
+	var pagination = {
+		start: (page - 1) * count, // La primer pagina es la 0
+		count: count
+	};
+	var sort = {
+		sort: {
+			desc: '_id'
+		}
+	};
+
+	Alumno
+		.find()
+		.filter(filter)
+		.order(sort)
+		.page(pagination, function(err, alumnos){
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				res.jsonp(alumnos);
+			}
+			});
+	
 };
 
 /**

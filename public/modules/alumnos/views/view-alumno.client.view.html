@@ -1,6 +1,6 @@
 <section data-ng-controller="AlumnosController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="alumno.name"> </h1>
+		<h1 data-ng-bind="alumno.nombre"> </h1>
 		<h1 data-ng-bind="alumno.apellido"></h1>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == alumno.user._id))">
@@ -13,14 +13,37 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Posted on
+			Postsed ons
 			<span data-ng-bind="alumno.created | date:'mediumDate'"></span>
 			by
 			<span data-ng-bind="alumno.user.displayName"></span>
 		</em>
 	</small>
-	<p class="lead" data-ng-bind="alumno.dni"></p><br>
-	<p class="lead" data-ng-bind="alumno.direccion.calle"></p><br>
-	<p class="lead" data-ng-bind="alumno.direccion.numero"></p><br>
-	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p><br>
+	<p class="lead" data-ng-bind="alumno.dni">ThisDNI</p>
+	<p class="lead" data-ng-bind="alumno.direccion.calle"></p>
+	<p class="lead" data-ng-bind="alumno.direccion.numero"></p>
+	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p>
 </section>
+
+<section data-ng-controller="ComentariosController" data-ng-init="find()">
+	<div class="page-header">
+        <h1>Comentarios</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="comentario in comentarios" data-ng-href="#!/comentarios/{{comentario._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="comentario.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="comentario.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="comentario.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!comentarios.$resolved || comentarios.length">
+    	No Comentarios yet, why don't you <a href="/#!/comentarios/create">create one</a>?
+    </div>
+</section>
+<!--<div ng-view></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script-->

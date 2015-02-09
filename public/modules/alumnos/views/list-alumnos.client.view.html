@@ -1,19 +1,53 @@
-<section data-ng-controller="AlumnosController" data-ng-init="find()">
+<section data-ng-controller="AlumnosController">
     <div class="page-header">
         <h1>Alumnos</h1>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="alumno in alumnos" data-ng-href="#!/alumnos/{{alumno._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="alumno.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="alumno.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="alumno.name"></h4>
+    <div>
+        <table ng-table="tableParams">
+            <tr class="tabla" data-ng-repeat="alumno in $data">
+                <td data-title="Nombre">{{alumno.nombre}}</td>
+                <td data-title="Apellido">{{alumno.apellido}}</td>
+                <td data-title="DNI">{{alumno.dni}}</td>
+                <td data-title="Calle">{{alumno.direccion.calle}}</p></td>
+                <td data-title="Numero">{{alumno.direccion.numero}}</p></td>
+                <td data-title="Dpto">{{alumno.direccion.dpto}}</p></td>
+                <td><div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == alumno.user._id))">
+                    <a class="btn btn-primary" href="/#!/alumnos/{{alumno._id}}">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
+                    <a class="btn btn-primary" href="/#!/alumnos/{{alumno._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove();">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div><td>
+            </tr>
+        </table>
+         <a class="btn btn-primary" href="/#!/alumnos/create">
+                <i class="glyphicon glyphicon-plus"></i>
         </a>
     </div>
+    <!--div class="list-group">
+        <a data-ng-repeat="alumno in alumnos" data-ng-href="#!/alumnos/{{alumno._id}}" class="list-group-item">
+			<table ng-table>
+                <small class="list-group-item-text">
+                    <p data-ng-bind="alumno.dni"></p>
+                    <p data-ng-bind="alumno.direccion.calle"></p>
+                    <p data-ng-bind="alumno.direccion.numero"></p>
+                    <p data-ng-bind="alumno.direccion.dpto"></p>
+    				Posted on
+    				<span data-ng-bind="alumno.created | date:'medium'"></span>
+    				by
+    				<span data-ng-bind="alumno.user.displayName"></span>
+    			</small>
+            </table>
+			<h4 class="list-group-item-heading" data-ng-bind="alumno.name"></h4>
+        </a>
+    </div-->
+   
     <div class="alert alert-warning text-center" data-ng-hide="!alumnos.$resolved || alumnos.length">
     	No Alumnos yet, why don't you <a href="/#!/alumnos/create">create one</a>?
     </div>
 </section>
+<!--div ng-view></div-->

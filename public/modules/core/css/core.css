@@ -13,3 +13,10 @@
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+.ng-table{
+	width: 100%;
+}
+.tabla{
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+}
