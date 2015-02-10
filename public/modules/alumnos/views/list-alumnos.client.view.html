@@ -1,10 +1,25 @@
-<section data-ng-controller="AlumnosController" data-ng-init="find()">
+<section data-ng-controller="AlumnosController">
     <div class="page-header">
         <h1>Alumnos</h1>
     </div>
     <div>
         <table ng-table="tableParams">
-            <tr class="tabla" data-ng-repeat="alumno in $data">
+            <thead>
+                <tr>
+                    <input class="form-control ng-pristine ng-valid" id="exampleInputEmail1" placeholder="Filter By Nombre" ng-model="searchText.nombre">
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <input class="form-control ng-pristine ng-valid" id="exampleInputEmail1" placeholder="Filter By Apellido" ng-model="searchText.apellido">
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <input class="form-control ng-pristine ng-valid" id="exampleInputEmail1" placeholder="Filter By DNI" ng-model="searchText.dni">
+                </tr>
+            </thead>
+            <tr class="tabla" data-ng-repeat="alumno in $data | filter: searchText" ><!--$data"-->
                 <td data-title="'Nombre'" sortable="'nombre'">{{alumno.nombre}}</td>
                 <td data-title="'Apellido'" sortable="'apellido'">{{alumno.apellido}}</td>
                 <td data-title="'DNI'" sortable="'dni'">{{alumno.dni}}</td>
@@ -26,7 +41,7 @@
                 <td>
 
             </tr>
-        </table>
+        
          <a class="btn btn-primary" href="/#!/alumnos/create">
                 <i class="glyphicon glyphicon-plus"></i>
         </a>

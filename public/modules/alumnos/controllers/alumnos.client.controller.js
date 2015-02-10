@@ -2,7 +2,7 @@
 
 // Alumnos controller
 angular.module('alumnos').controller('AlumnosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Alumnos', 'ngTableParams',
-	function($scope, $stateParams, $location, Authentication, Alumnos, ngTableParams) {
+	function($scope, $stateParams, $location, Authentication, Alumnos, NgTableParams) {
 		$scope.authentication = Authentication;
 
 		var params = {
@@ -23,7 +23,7 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 	            	});
 	    	}
     	};
-		$scope.tableParams = new ngTableParams(params, settings);
+		$scope.tableParams = new NgTableParams(params, settings);
 
 		// Create new Alumno
 		$scope.create = function() {

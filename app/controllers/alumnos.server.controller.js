@@ -90,9 +90,21 @@ exports.list = function(req, res) {
 	var page = req.query.page || 1;
 	var filter = {
 		filters: {
-			mandatory: req.query.filter
+			/*
+			mandatory: {
+					exact: req.query.filter
+			}*/
+			//field : ['nombre', 'apellido', 'dni'],
+            mandatory : {
+                contains : req.query.filter //{nombre: 'Matias'}
+                /*,
+                exact : {
+                    nombre : req.query.filter
+                }*/
+            }
 		}
 	};
+	console.info(req.query);
 	var pagination = {
 		start: (page - 1) * count, // La primer pagina es la 0
 		count: count
@@ -106,7 +118,7 @@ exports.list = function(req, res) {
 		sortObject[sortValue] = sortKey;
 	}
 	else{
-		sortObject['desc'] = '_id';
+		sortObject.desc = '_id';
 		//sortObject['desc'].push('_id');
 	}
 	var sort = {
@@ -125,7 +137,7 @@ exports.list = function(req, res) {
 			} else {
 				res.jsonp(alumnos);
 			}
-			});
+		});
 	
 };
 

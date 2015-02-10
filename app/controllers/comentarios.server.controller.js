@@ -15,6 +15,7 @@ exports.create = function(req, res) {
 	var comentario = new Comentario(req.body);
 	comentario.user = req.user;
 	comentario.user = req.alumno;
+	console.info(req);
 
 	comentario.save(function(err) {
 		if (err) {
@@ -75,15 +76,53 @@ exports.delete = function(req, res) {
  * List of Comentarios
  */
 exports.list = function(req, res) { 
-	Comentario.find().sort('-created').populate('user', 'displayName').exec(function(err, comentarios) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(comentarios);
-		}
-	});
+
+	var count = req.query.count || 5; // Si no hay registros devuelve 5
+	var page = req.query.page || 1;
+	
+	var pagination = {
+		start: (page - 1) * count, // La primer pagina es la 0
+		count: count
+	};
+	
+	var sortObject = {};
+	if(req.query.sorting)
+	{
+		var sortKey = Object.keys(req.query.sorting)[0];
+		var sortValue = req.query.sorting[sortKey];
+		sortObject[sortValue] = sortKey;
+	}
+	else{
+		sortObject.desc = '_id';
+		//sortObject['desc'].push('_id');
+	}
+	var sort = {
+		sort: sortObject
+	};	
+	//alert('asd');
+	var filter = {
+			filters: {
+				mandatory: {
+					//exact: {
+						contains: req.query.filter
+					//}
+				}
+			}
+		};
+	Comentario
+		.find()
+		.filter(filter)
+		.order(sort)
+		.page(pagination,function(err, alumnos){
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				res.jsonp(alumnos);
+			}
+		}); 
+	
 };
 
 /**
