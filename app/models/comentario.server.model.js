@@ -19,7 +19,7 @@ var ComentarioSchema = new Schema({
 	asunto: {
 		type: String,
 		default: 'aa',
-		required: 'Please fill Comentario asunto',
+		//required: 'Please fill Comentario asunto',
 		trim: true
 	},
 	alumno: {

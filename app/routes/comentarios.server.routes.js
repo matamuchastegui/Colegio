@@ -15,12 +15,12 @@ module.exports = function(app) {
 		.put(users.requiresLogin, comentarios.hasAuthorization, comentarios.update)
 		.delete(users.requiresLogin, comentarios.hasAuthorization, comentarios.delete);
 
-	app.route('/comentarios/:alumnoId')
+	/*app.route('/comentarios/:alumnoId')
 		.get(comentarios.read)
 		.put(users.requiresLogin, comentarios.hasAuthorization, comentarios.update)
-		.delete(users.requiresLogin, comentarios.hasAuthorization, comentarios.delete);
+		.delete(users.requiresLogin, comentarios.hasAuthorization, comentarios.delete);*/
 
 	// Finish by binding the Comentario middleware
 	app.param('comentarioId', comentarios.comentarioByID);
-	app.param('alumnoId', alumnos.alumnoByID);
+	//app.param('alumnoId', alumnos.alumnoByID);
 };

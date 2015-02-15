@@ -12,7 +12,14 @@ angular.module('comentarios').controller('ComentariosController', ['$scope', '$s
 				name: this.name,
 				asunto: this.asunto,
 				contenido: this.contenido,
-				alumno: this.alumno
+				alumno: this.alumno /*{
+					alumno.nombre: this.alumno.nombre,
+					alumno.apellido: this.alumno.apellido,
+					alumno.dni: this.alumno.dni,
+					alumno.direccion.calle: this.alumno.direccion.calle,
+					alumno.direccion.numero: this.alumno.direccion.numero,
+					alumno.direccion.dpto: this.alumno.direccion.dpto
+				}*/
 			});
 
 			// Redirect after save

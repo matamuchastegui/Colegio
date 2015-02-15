@@ -75,7 +75,7 @@ exports.delete = function(req, res) {
 /**
  * List of Comentarios
  */
-exports.list = function(req, res) { 
+/*exports.list = function(req, res) { 
 
 	var count = req.query.count || 5; // Si no hay registros devuelve 5
 	var page = req.query.page || 1;
@@ -123,7 +123,7 @@ exports.list = function(req, res) {
 			}
 		}); 
 	
-};
+};*/
 
 /**
  * Comentario middleware
@@ -136,6 +136,31 @@ exports.comentarioByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+exports.list = function(req, res) { 
+	Comentario
+	.find()
+	.sort('-created')
+	.populate('alumno')
+	.exec(function(err, comentarios) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(comentarios);
+        }
+    });
+};
+ 
+/*exports.comentarioById = function(req, res, next, id) { Comentario.findById(id).populate('alumno').exec(function(err, comentario) {
+        if (err) return next(err);
+        if (! comentario) return next(new Error('Failed to load Comentario ' + id));
+        req.comentario = comentario ;
+        next();
+    });
+};*/
+
 
 /**
  * Comentario authorization middleware

@@ -1,8 +1,8 @@
 'use strict';
 
 // Alumnos controller
-angular.module('alumnos').controller('AlumnosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Alumnos', 'ngTableParams',
-	function($scope, $stateParams, $location, Authentication, Alumnos, NgTableParams) {
+angular.module('alumnos').controller('AlumnosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Alumnos', 'Comentarios', 'ngTableParams',
+	function($scope, $stateParams, $location, Authentication, Alumnos, Comentarios, NgTableParams) {
 		$scope.authentication = Authentication;
 
 		var params = {
@@ -29,14 +29,28 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Alumno object
 			var alumno = new Alumnos ({
-				nombre: this.nombre,
-				apellido: this.apellido,
-				dni: this.dni,
+				nombre: 'test',//thisObject.comentarioNombre,// BlogTitle field from html which safes the content to a angular property.
+				apellido: 'test',//thisObject.comentarioApellido, // BlogContent field from html which safes the content to a angular property.
+				dni: 'test',//thisObject.comentarioDni,
 				direccion: {
-					calle: this.calle, 
-					numero: this.numero, 
-					dpto: this.dpto
+					calle: 'test',//thisObject.comentarioCalle, 
+					numero: 'test',//thisObject.comentarioNumero, 
+					dpto: 'test'//thisObject.comentarioDpto
 				}
+			});
+			alumno.save(function(err, doc){
+			   if(err)
+			      console.log(err);
+			   var comentario = new Comentarios({
+			       	name: 'test', //this.name,
+					asunto: 'test', //this.asunto,
+					contenido: 'test', //this.contenido,
+					//alumno: response._id
+			   });
+			   comentario.save( function(err, doc){
+			     console.log(err);
+			     console.log(doc);
+			   });
 			});
 
 			// Redirect after save

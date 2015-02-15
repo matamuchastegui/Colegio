@@ -141,6 +141,7 @@ exports.list = function(req, res) {
 	
 };
 
+
 /**
  * Alumno middleware
  */
