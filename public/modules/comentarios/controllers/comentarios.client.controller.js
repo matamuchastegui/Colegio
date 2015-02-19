@@ -1,8 +1,8 @@
 'use strict';
 
 // Comentarios controller
-angular.module('comentarios').controller('ComentariosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comentarios',
-	function($scope, $stateParams, $location, Authentication, Comentarios) {
+angular.module('comentarios').controller('ComentariosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comentarios', 'Alumnos',
+	function($scope, $stateParams, $location, Authentication, Comentarios, Alumnos) {
 		$scope.authentication = Authentication;
 
 		// Create new Comentario
@@ -12,7 +12,7 @@ angular.module('comentarios').controller('ComentariosController', ['$scope', '$s
 				name: this.name,
 				asunto: this.asunto,
 				contenido: this.contenido,
-				alumno: this.alumno /*{
+				alumno: this.alumno._id /*{
 					alumno.nombre: this.alumno.nombre,
 					alumno.apellido: this.alumno.apellido,
 					alumno.dni: this.alumno.dni,

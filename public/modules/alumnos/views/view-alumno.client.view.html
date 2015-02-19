@@ -19,7 +19,7 @@
 			<span data-ng-bind="alumno.user.displayName"></span>
 		</em>
 	</small>
-	<p class="lead" data-ng-bind="alumno.dni">ThisDNI</p>
+	<p class="lead" data-ng-bind="alumno.dni"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.calle"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.numero"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p>
@@ -27,7 +27,7 @@
 
 <section data-ng-controller="ComentariosController">
     <div class="page-header">
-        <h1>New Comentario</h1>
+        <h1 id="qqq" value="q2">New Comentario</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
@@ -50,7 +50,12 @@
                         <textarea data-ng-model="contenido" id="contenido" class="form-control" placeholder="Contenido..." required></textarea>
                     </div>
                 </div>
-                <input type="text" data-ng-model="id" id="id" class="form-control" placeholder="ID" value="alumno._id" required>
+                <div class="form-group">
+                    <label class="control-label" for="alumno._id">Alumno ID {{alumno.nombre}}</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="alumno._id" id="alumno._id" class="form-control" placeholder="Alumno ID" required value="{{alumno._id}}">
+                    </div>
+                </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default">
                 </div>
@@ -67,12 +72,15 @@
         <h1>Comentarios</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="comentario in comentarios" data-ng-href="#!/comentarios/{{comentario._id}}" class="list-group-item">
+        <a data-ng-repeat="comentario in comentarios | filter: searchText" data-ng-href="#!/comentarios/{{comentario._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="comentario.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="comentario.user.displayName"></span>
+                <br>For
+                <span data-ng-bind="comentario.alumno.nombre"> </span> &nbsp
+                <span data-ng-bind="comentario.alumno.apellido"></span>
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="comentario.name"></h4>
         </a>

@@ -10,16 +10,15 @@ module.exports = function(app) {
 		.get(comentarios.list)
 		.post(users.requiresLogin, comentarios.create);
 
-	app.route('/comentarios/:comentarioId')
-		.get(comentarios.read)
-		.put(users.requiresLogin, comentarios.hasAuthorization, comentarios.update)
-		.delete(users.requiresLogin, comentarios.hasAuthorization, comentarios.delete);
-
-	/*app.route('/comentarios/:alumnoId')
+	/*app.route('/comentarios/:comentarioId')
 		.get(comentarios.read)
 		.put(users.requiresLogin, comentarios.hasAuthorization, comentarios.update)
 		.delete(users.requiresLogin, comentarios.hasAuthorization, comentarios.delete);*/
 
+	/*app.route('/comentarios/:alumnoId')
+		.get(comentarios.list3)
+		.put(users.requiresLogin, comentarios.create);
+	*/	
 	// Finish by binding the Comentario middleware
 	app.param('comentarioId', comentarios.comentarioByID);
 	//app.param('alumnoId', alumnos.alumnoByID);

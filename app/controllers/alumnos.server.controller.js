@@ -90,10 +90,6 @@ exports.list = function(req, res) {
 	var page = req.query.page || 1;
 	var filter = {
 		filters: {
-			/*
-			mandatory: {
-					exact: req.query.filter
-			}*/
 			//field : ['nombre', 'apellido', 'dni'],
             mandatory : {
                 contains : req.query.filter //{nombre: 'Matias'}

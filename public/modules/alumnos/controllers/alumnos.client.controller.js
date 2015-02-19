@@ -29,16 +29,20 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Alumno object
 			var alumno = new Alumnos ({
-				nombre: 'test',//thisObject.comentarioNombre,// BlogTitle field from html which safes the content to a angular property.
-				apellido: 'test',//thisObject.comentarioApellido, // BlogContent field from html which safes the content to a angular property.
-				dni: 'test',//thisObject.comentarioDni,
+				nombre: this.nombre,//thisObject.comentarioNombre,// BlogTitle field from html which safes the content to a angular property.
+				apellido: this.apellido,//thisObject.comentarioApellido, // BlogContent field from html which safes the content to a angular property.
+				dni: this.dni,//thisObject.comentarioDni,
 				direccion: {
-					calle: 'test',//thisObject.comentarioCalle, 
-					numero: 'test',//thisObject.comentarioNumero, 
-					dpto: 'test'//thisObject.comentarioDpto
+					calle: this.calle,//thisObject.comentarioCalle, 
+					numero: this.numero,//thisObject.comentarioNumero, 
+					dpto: this.dpto//thisObject.comentarioDpto
 				}
 			});
-			alumno.save(function(err, doc){
+			//alert(this.direccion);
+			/*console.log(this.nombre);
+			console.log($scope);
+			console.log('qqr');
+			/*alumno.save(function(err, doc){
 			   if(err)
 			      console.log(err);
 			   var comentario = new Comentarios({
@@ -51,7 +55,7 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 			     console.log(err);
 			     console.log(doc);
 			   });
-			});
+			});*/
 
 			// Redirect after save
 			alumno.$save(function(response) {
@@ -97,6 +101,7 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		// Find a list of Alumnos
 		$scope.find = function() {
 			$scope.alumnos = Alumnos.query();
+			//$scope.comentarios = Comentarios.query();
 		};
 
 		// Find existing Alumno
