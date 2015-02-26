@@ -52,6 +52,9 @@ var AlumnoSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	comentario: [{ 
+		type: Schema.ObjectId,	ref: 'Comentario' 
+	}],
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'

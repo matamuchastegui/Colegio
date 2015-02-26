@@ -25,37 +25,22 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
     	};
 		$scope.tableParams = new NgTableParams(params, settings);
 
+		
 		// Create new Alumno
 		$scope.create = function() {
 			// Create new Alumno object
 			var alumno = new Alumnos ({
-				nombre: this.nombre,//thisObject.comentarioNombre,// BlogTitle field from html which safes the content to a angular property.
-				apellido: this.apellido,//thisObject.comentarioApellido, // BlogContent field from html which safes the content to a angular property.
-				dni: this.dni,//thisObject.comentarioDni,
+				nombre: this.nombre,
+				apellido: this.apellido,
+				dni: this.dni,
 				direccion: {
-					calle: this.calle,//thisObject.comentarioCalle, 
-					numero: this.numero,//thisObject.comentarioNumero, 
-					dpto: this.dpto//thisObject.comentarioDpto
-				}
+					calle: this.calle,
+					numero: this.numero,
+					dpto: this.dpto
+				},
+				comentario: this.comentario._id
 			});
-			//alert(this.direccion);
-			/*console.log(this.nombre);
-			console.log($scope);
-			console.log('qqr');
-			/*alumno.save(function(err, doc){
-			   if(err)
-			      console.log(err);
-			   var comentario = new Comentarios({
-			       	name: 'test', //this.name,
-					asunto: 'test', //this.asunto,
-					contenido: 'test', //this.contenido,
-					//alumno: response._id
-			   });
-			   comentario.save( function(err, doc){
-			     console.log(err);
-			     console.log(doc);
-			   });
-			});*/
+
 
 			// Redirect after save
 			alumno.$save(function(response) {
@@ -101,7 +86,8 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 		// Find a list of Alumnos
 		$scope.find = function() {
 			$scope.alumnos = Alumnos.query();
-			//$scope.comentarios = Comentarios.query();
+			//console.info( $scope.alumnos );
+			//console.info( JSON.parse(JSON.stringify($scope.alumnos)) );
 		};
 
 		// Find existing Alumno
@@ -109,6 +95,7 @@ angular.module('alumnos').controller('AlumnosController', ['$scope', '$statePara
 			$scope.alumno = Alumnos.get({ 
 				alumnoId: $stateParams.alumnoId
 			});
+			console.info($scope.alumno);
 		};
 	}
 ]);

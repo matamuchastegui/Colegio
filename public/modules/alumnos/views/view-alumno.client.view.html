@@ -23,9 +23,15 @@
 	<p class="lead" data-ng-bind="alumno.direccion.calle"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.numero"></p>
 	<p class="lead" data-ng-bind="alumno.direccion.dpto"></p>
-</section>
+    <p class="lead" data-ng-bind="alumno.comentario[0].id"></p>
 
-<section data-ng-controller="ComentariosController">
+    <p ng-repeat="comentario in alumno.comentarios">
+        Estás en: <span>{{comentario}}</span>
+    </p>
+
+
+<!--section data-ng-controller="ComentariosController">
+    <p class="lead" data-ng-bind="alumno.comentarios[1]"></p>
     <div class="page-header">
         <h1 id="qqq" value="q2">New Comentario</h1>
     </div>
@@ -65,13 +71,21 @@
             </fieldset>
         </form>
     </div>
-</section>
+</section-->
 
-<section data-ng-controller="ComentariosController" data-ng-init="find()">
+<!--section data-ng-controller="ComentariosController" data-ng-init="find()">
 	<div class="page-header">
         <h1>Comentarios</h1>
     </div>
     <div class="list-group">
+        <a data-ng-repeat="comentario in comentarios | filter: { '_id': '54e16a4b4419bca41afd1d44', '_id': '54e16aeb402843f81b71f741' }" data-ng-href="#!/comentarios/{{alumno.comentarios[1]}}" class="list-group-item">
+            <small class="list-group-item-text">
+                <span data-ng-bind="comentario.name"></span>
+            </small>
+            <h4 class="list-group-item-heading" data-ng-bind="comentarios.name"></h4>
+        </a>
+    </div>
+    <!--div class="list-group">
         <a data-ng-repeat="comentario in comentarios | filter: searchText" data-ng-href="#!/comentarios/{{comentario._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Posted on
@@ -84,11 +98,12 @@
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="comentario.name"></h4>
         </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!comentarios.$resolved || comentarios.length">
+    </div-->
+    <!--div class="alert alert-warning text-center" data-ng-hide="!comentarios.$resolved || comentarios.length">
     	No Comentarios yet, why don't you <a href="/#!/comentarios/create">create one</a>?
     </div>
-</section>
+</section-->
 <!--<div ng-view></div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script-->
+    </section>

@@ -1,9 +1,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<section data-ng-controller="AlumnosController">
+<section data-ng-controller="AlumnosController"  data-ng-init="find()">
     <div class="page-header">
         <h1>Alumnos</h1>
         <div id="ww" value="dsa" title="qw">Qr</div>
     </div>
+    <div class="list-group">
+        <a data-ng-repeat="alumno in alumnos" data-ng-href="#!/alumnos/{{alumno._id}}" class="list-group-item">
+            <small class="list-group-item-text">
+                Nombre
+                <span data-ng-bind="alumno.nombre"></span>
+                DNI
+                <span data-ng-bind="alumno.dni"></span>
+            </small>
+            <h4 class="list-group-item-heading" data-ng-bind="alumno.title"></h4>
+            <p class="list-group-item-text" data-ng-bind="alumno.content"></p>
+        </a>
+    </div>
+    
     <div class="max-width">
 
 

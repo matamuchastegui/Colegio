@@ -30,6 +30,8 @@ exports.create = function(req, res) {
  * Show the current Alumno
  */
 exports.read = function(req, res) {
+	//console.info(req.alumno);
+	//console.info( JSON.parse(JSON.stringify(req.alumnos)) );
 	res.jsonp(req.alumno);
 };
 
@@ -72,31 +74,15 @@ exports.delete = function(req, res) {
 /**
  * List of Alumnos
  */
- /*
-exports.list = function(req, res) { 
-	Alumno.find().sort('-created').populate('user', 'displayName').exec(function(err, alumnos) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(alumnos);
-		}
-	});
-};*/
+
 exports.list = function(req, res) { 
 
 	var count = req.query.count || 5; // Si no hay registros devuelve 5
 	var page = req.query.page || 1;
 	var filter = {
 		filters: {
-			//field : ['nombre', 'apellido', 'dni'],
             mandatory : {
-                contains : req.query.filter //{nombre: 'Matias'}
-                /*,
-                exact : {
-                    nombre : req.query.filter
-                }*/
+                contains : req.query.filter 
             }
 		}
 	};
@@ -123,9 +109,21 @@ exports.list = function(req, res) {
 
 	Alumno
 		.find()
+		//.field({ filters : { field : [ 'nombre', 'dni', '_id', 'comentario' ] } } )
 		.filter(filter)
 		.order(sort)
-		.page(pagination, function(err, alumnos){
+		.populate('comentario')
+		//.page(pagination)
+		.exec(function(err, comentarios) {
+	        if (err) {
+	            return res.status(400).send({
+	                message: errorHandler.getErrorMessage(err)
+	            });
+	        } else {
+	            res.jsonp(comentarios);
+	        }
+	   	 });
+		/*.page(pagination, function(err, alumnos){
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
@@ -133,7 +131,7 @@ exports.list = function(req, res) {
 			} else {
 				res.jsonp(alumnos);
 			}
-		});
+		});*/
 	
 };
 

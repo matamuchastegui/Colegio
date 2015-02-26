@@ -1,9 +1,31 @@
 'use strict';
 
 // Comentarios controller
-angular.module('comentarios').controller('ComentariosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comentarios', 'Alumnos',
-	function($scope, $stateParams, $location, Authentication, Comentarios, Alumnos) {
+angular.module('comentarios').controller('ComentariosController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comentarios', 'Alumnos', 'NgTableParams',
+	function($scope, $stateParams, $location, Authentication, Comentarios, Alumnos, NgTableParams) {
 		$scope.authentication = Authentication;
+
+		/*var params = {
+			page: 1,            // show first page
+        	count: 5
+		};
+
+		var settings = {
+			total: 0,  
+			counts: [5, 10, 20],         // length of data
+	        getData: function($defer, params) {
+	            // ajax request to api
+	            Comentarios.get(params.url(), function(response) {
+	                    // update table params
+	                    params.total(response.total);
+	                    // set new data
+	                    $defer.resolve(response.results);
+	            	});
+	    	}
+    	};
+		$scope.tableParams = new NgTableParams(params, settings);*/
+
+
 
 		// Create new Comentario
 		$scope.create = function() {
@@ -12,14 +34,6 @@ angular.module('comentarios').controller('ComentariosController', ['$scope', '$s
 				name: this.name,
 				asunto: this.asunto,
 				contenido: this.contenido,
-				alumno: this.alumno._id /*{
-					alumno.nombre: this.alumno.nombre,
-					alumno.apellido: this.alumno.apellido,
-					alumno.dni: this.alumno.dni,
-					alumno.direccion.calle: this.alumno.direccion.calle,
-					alumno.direccion.numero: this.alumno.direccion.numero,
-					alumno.direccion.dpto: this.alumno.direccion.dpto
-				}*/
 			});
 
 			// Redirect after save
